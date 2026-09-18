@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kriswel.github.io/My-Portfolio-site/sitemap.xml
