@@ -51,9 +51,10 @@ is renamed or moved to a custom domain.
 
 ## Activating Google AdSense
 
-Three ad slots are already placed in `index.html` (below the hero, mid-page, and
-the head script), each wrapped in an HTML comment with a placeholder box shown
-instead. To go live:
+Ads are prepared in `index.html` but **fully disabled** — nothing ad-related is
+visible on the page. There are three commented-out pieces: the loader script in
+`<head>`, `AD SLOT 1` (banner below the hero) and `AD SLOT 2` (between Experience
+and Education). To go live:
 
 1. **Get an approved AdSense account.** Google requires a live site with real
    content and a privacy policy (already included here as `privacy.html`) before
@@ -62,10 +63,11 @@ instead. To go live:
    AdSense dashboard.
 3. In `index.html`'s `<head>`, uncomment the `adsbygoogle.js` loader script and
    replace `ca-pub-XXXXXXXXXXXXXXXX` with your real Publisher ID.
-4. For each `<div class="ad-slot">`, create a matching **Ad unit** in AdSense to
-   get a `data-ad-slot` ID, then uncomment the `<ins class="adsbygoogle">` block
-   and fill in your `data-ad-client` and `data-ad-slot` values. Remove or keep
-   the `.ad-slot__placeholder` div as you like (it's just a visual fallback).
+4. For each slot, create a matching **Ad unit** in AdSense to get a
+   `data-ad-slot` ID. Then enable the slot by deleting its opening line
+   (`<!-- AD SLOT N ... disabled ...`) and closing line (`END AD SLOT N -->`),
+   and fill in your `data-ad-client` and `data-ad-slot` values. Enable only the
+   slots you want — each one is independent.
 5. **EU/UK/Swiss visitors — consent is required.** Google requires publishers
    serving those regions to use a Google-certified Consent Management Platform
    (e.g. Google's own [Funding Choices](https://fundingchoices.google.com/)) before
