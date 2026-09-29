@@ -35,15 +35,23 @@ The page content mirrors the CV. When the CV changes, update both:
 
 ## Deploying to GitHub Pages
 
-1. Push this repo to GitHub (already done if you're reading this from the repo).
-2. In the repo, go to **Settings → Pages**.
-3. Under "Build and deployment", choose **Deploy from a branch**, branch **main**,
-   folder **/ (root)**.
-4. Save. The site will be live at `https://<your-username>.github.io/<repo-name>/`
-   within a minute or two.
-5. If you use a custom domain, add it in the same Pages settings screen (this
-   creates a `CNAME` file for you) and update the `canonical`/`og:url` links and
-   `sitemap.xml`/`robots.txt` to match the new domain.
+Deployment runs through the GitHub Actions workflow
+`.github/workflows/deploy-pages.yml`:
+
+1. One-time setup: in **Settings → Pages → Build and deployment**, set
+   **Source** to **GitHub Actions**. (With "Deploy from a branch" the workflow's
+   deploy step fails.)
+2. Every push to `main` (including merging a PR) deploys the site automatically.
+   Progress is visible in the **Actions** tab as "Deploy site to GitHub Pages";
+   the site updates about a minute after the run turns green.
+3. To redeploy without a code change: **Actions → Deploy site to GitHub Pages →
+   Run workflow**.
+4. If you use a custom domain, add it in the same Pages settings screen and
+   update the `canonical`/`og:url` links and `sitemap.xml`/`robots.txt` to match.
+
+Pages also caches responses for up to 10 minutes (`cache-control: max-age=600`),
+so use a hard refresh (Ctrl+F5) if you still see the old version right after a
+deploy.
 
 The canonical URLs in `index.html`, `sitemap.xml`, and `robots.txt` currently
 assume `https://kriswel.github.io/My-Portfolio-site/`. Update them if the repo
