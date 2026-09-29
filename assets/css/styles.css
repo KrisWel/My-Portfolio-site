@@ -285,6 +285,7 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-sm);
 }
 .skill-card h3 { font-size: 1.02rem; margin-bottom: 14px; color: var(--color-accent-dark); }
+.skill-card--developing { border-style: dashed; border-color: var(--color-accent); box-shadow: none; background: transparent; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag-list li {
   font-size: 0.82rem;
@@ -331,7 +332,15 @@ img { max-width: 100%; display: block; }
 .timeline-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
 .timeline-head h3 { margin-bottom: 0; font-size: 1.2rem; }
 .timeline-dates { font-size: 0.85rem; color: var(--color-text-muted); font-weight: 600; }
-.timeline-org { color: var(--color-accent-dark); font-weight: 600; margin: 4px 0 14px; }
+.timeline-org { color: var(--color-accent-dark); font-weight: 600; margin: 4px 0 2px; }
+.timeline-context { color: var(--color-text-muted); font-style: italic; font-size: 0.92rem; margin-bottom: 14px; }
+.timeline-subhead {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin: 18px 0 10px;
+}
+.timeline-subhead:first-of-type { margin-top: 0; }
 .timeline-content ul { display: flex; flex-direction: column; gap: 10px; }
 .timeline-content li {
   position: relative;

@@ -1,6 +1,7 @@
 # Krzysztof Weltrowski — Portfolio
 
-Personal portfolio site for Krzysztof Weltrowski, QA Automation Engineer.
+Personal portfolio site for Krzysztof Weltrowski, QA Engineer (Security & Identity
+Testing, Test Automation in Python).
 Static HTML/CSS/JS, no build step, no framework, no backend — deploys directly
 to GitHub Pages.
 
@@ -15,8 +16,7 @@ assets/css/styles.css       All styling (colors/fonts as CSS variables at the to
 assets/js/main.js           Mobile nav, scroll-reveal animation, footer year
 assets/img/favicon.svg      Site icon
 assets/resume/
-  krzysztof-weltrowski-resume.html   Source of the downloadable CV (ATS-friendly, single column)
-  krzysztof-weltrowski-resume.pdf    Generated PDF served by the "Download CV" buttons
+  krzysztof-weltrowski-resume.pdf    CV served by the "Download CV" buttons
 ```
 
 ## Editing content
@@ -24,16 +24,14 @@ assets/resume/
 All page copy lives directly in `index.html` (experience, skills, education, contact
 links). Edit it like a normal HTML file — there's no CMS or data file.
 
-The CV/resume is a **separate, plainer HTML file** so it stays parseable by
-Applicant Tracking Systems: single column, standard fonts, no tables or icons.
-After editing `assets/resume/krzysztof-weltrowski-resume.html`, regenerate the PDF:
+The page content mirrors the CV. When the CV changes, update both:
 
-- **Easiest:** open the file in Chrome → `Print` → destination "Save as PDF" →
-  paper size **A4**, margins **default**, "Background graphics" **on** → save over
-  `assets/resume/krzysztof-weltrowski-resume.pdf`.
-- The current PDF was generated headlessly with Playwright/Chromium at 94% scale,
-  which is what keeps it to one page — if you add content, either trim something
-  else or accept a second page.
+- **CV file:** overwrite `assets/resume/krzysztof-weltrowski-resume.pdf` with the
+  new PDF. Keep the file name — every "Download CV" link points to it. Visitors
+  get it saved as `Krzysztof_Weltrowski_CV_EN.pdf` (set by the links' `download`
+  attribute).
+- **Page text:** update the matching sections in `index.html` so the site and
+  the PDF don't contradict each other.
 
 ## Deploying to GitHub Pages
 
