@@ -35,15 +35,23 @@ The page content mirrors the CV. When the CV changes, update both:
 
 ## Deploying to GitHub Pages
 
-1. Push this repo to GitHub (already done if you're reading this from the repo).
-2. In the repo, go to **Settings → Pages**.
-3. Under "Build and deployment", choose **Deploy from a branch**, branch **main**,
-   folder **/ (root)**.
-4. Save. The site will be live at `https://<your-username>.github.io/<repo-name>/`
-   within a minute or two.
-5. If you use a custom domain, add it in the same Pages settings screen (this
-   creates a `CNAME` file for you) and update the `canonical`/`og:url` links and
-   `sitemap.xml`/`robots.txt` to match the new domain.
+Deployment runs through the GitHub Actions workflow
+`.github/workflows/deploy-pages.yml`:
+
+1. One-time setup: in **Settings → Pages → Build and deployment**, set
+   **Source** to **GitHub Actions**. (With "Deploy from a branch" the workflow's
+   deploy step fails.)
+2. Every push to `main` (including merging a PR) deploys the site automatically.
+   Progress is visible in the **Actions** tab as "Deploy site to GitHub Pages";
+   the site updates about a minute after the run turns green.
+3. To redeploy without a code change: **Actions → Deploy site to GitHub Pages →
+   Run workflow**.
+4. If you use a custom domain, add it in the same Pages settings screen and
+   update the `canonical`/`og:url` links and `sitemap.xml`/`robots.txt` to match.
+
+Pages also caches responses for up to 10 minutes (`cache-control: max-age=600`),
+so use a hard refresh (Ctrl+F5) if you still see the old version right after a
+deploy.
 
 The canonical URLs in `index.html`, `sitemap.xml`, and `robots.txt` currently
 assume `https://kriswel.github.io/My-Portfolio-site/`. Update them if the repo
@@ -51,9 +59,10 @@ is renamed or moved to a custom domain.
 
 ## Activating Google AdSense
 
-Three ad slots are already placed in `index.html` (below the hero, mid-page, and
-the head script), each wrapped in an HTML comment with a placeholder box shown
-instead. To go live:
+Ads are prepared in `index.html` but **fully disabled** — nothing ad-related is
+visible on the page. There are three commented-out pieces: the loader script in
+`<head>`, `AD SLOT 1` (banner below the hero) and `AD SLOT 2` (between Experience
+and Education). To go live:
 
 1. **Get an approved AdSense account.** Google requires a live site with real
    content and a privacy policy (already included here as `privacy.html`) before
@@ -62,10 +71,11 @@ instead. To go live:
    AdSense dashboard.
 3. In `index.html`'s `<head>`, uncomment the `adsbygoogle.js` loader script and
    replace `ca-pub-XXXXXXXXXXXXXXXX` with your real Publisher ID.
-4. For each `<div class="ad-slot">`, create a matching **Ad unit** in AdSense to
-   get a `data-ad-slot` ID, then uncomment the `<ins class="adsbygoogle">` block
-   and fill in your `data-ad-client` and `data-ad-slot` values. Remove or keep
-   the `.ad-slot__placeholder` div as you like (it's just a visual fallback).
+4. For each slot, create a matching **Ad unit** in AdSense to get a
+   `data-ad-slot` ID. Then enable the slot by deleting its opening line
+   (`<!-- AD SLOT N ... disabled ...`) and closing line (`END AD SLOT N -->`),
+   and fill in your `data-ad-client` and `data-ad-slot` values. Enable only the
+   slots you want — each one is independent.
 5. **EU/UK/Swiss visitors — consent is required.** Google requires publishers
    serving those regions to use a Google-certified Consent Management Platform
    (e.g. Google's own [Funding Choices](https://fundingchoices.google.com/)) before
